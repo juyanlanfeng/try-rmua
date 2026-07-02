@@ -1,0 +1,15 @@
+# 在 simulator01 基础上加 rviz/rqt 可视化工具(apt 走镜像里已配好的 USTC 源,快)
+# 用于:容器内跑 rviz/rqt + X11 转发到宿主桌面看仿真数据
+FROM simulator01
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ros-noetic-rviz \
+    ros-noetic-rqt-image-view \
+    ros-noetic-rqt-common-plugins \
+    libgl1-mesa-dri libgl1-mesa-glx mesa-utils x11-utils \
+    && rm -rf /var/lib/apt/lists/*
+USER ue4
+
+# 默认入口给 bash:simulator01 的 start.bash(UE 启动器)对 viz 镜像无意义;
+# run_viz.sh 用 --entrypoint bash 覆盖,与此一致。
+ENTRYPOINT [ "/bin/bash" ]

@@ -1,0 +1,25 @@
+# ===== 模拟器二进制(下载产物,2G+,不入库)=====
+# 按 simulator/README.md 下载 simulator_12.0.0.5.zip 解压到 simulator/Build/
+simulator/Build/
+
+# ===== 抽取的 ROS1 运行库(可由 simulator/scripts/extract_roslibs.sh 重建)=====
+rmua_roslibs/
+
+# ===== 官方规则/参赛手册 PDF(版权+体积,从官方获取)=====
+*.pdf
+
+# ===== ROS/catkin 构建产物 =====
+IntelligentUAVChampionshipBase/basic_dev/build/
+IntelligentUAVChampionshipBase/basic_dev/devel/
+IntelligentUAVChampionshipBase/basic_dev/install/
+**/__pycache__/
+*.pyc
+
+# ===== 编辑器/工具本地配置 =====
+.claude/
+.vscode/
+*.swp
+
+# ===== 其它 =====
+*.bag
+simulator/settings_backup.json
