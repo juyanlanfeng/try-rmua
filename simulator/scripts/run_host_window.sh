@@ -49,12 +49,16 @@ cp -f "$REPO_DIR/settings.json" "$HOME/Documents/AirSim/"   # 每次用仓库里
 cd "$BIN_DIR"                                    # 切到 UE 二进制目录(下面用相对路径 ./RMUA/... 调它)
 echo "启动 UE 窗口:seed=$SEED (Ctrl+C 关闭)"
 # exec env ... :用 env 注入环境变量后,把当前 shell 进程【替换】成 UE(不留多余 shell 进程;Ctrl+C 直达 UE)
+# 注意:续行 `\` 必须是行尾最后一个字符,其后不能跟行内注释,否则 `\` 会转义空格而非续行。
+#   LD_LIBRARY_PATH  让动态链接器找到 ROS1 库(libroscpp/librospy 等)
+#   DISPLAY          渲染输出到宿主 X 显示(默认 :0)
+#   ROS_MASTER_URI   告诉 UE 内的 ROS 节点:master 在宿主 11311
 exec env \
-  LD_LIBRARY_PATH="$ROSLIBS" \                   # 让动态链接器能找到 ROS1 库(libroscpp/librospy 等)
-  DISPLAY="${DISPLAY:-:0}" \                     # 渲染输出到宿主 X 显示(默认 :0)
-  ROS_MASTER_URI=http://localhost:11311 \        # 告诉 UE 内的 ROS 节点:master 在宿主 11311
+  LD_LIBRARY_PATH="$ROSLIBS" \
+  DISPLAY="${DISPLAY:-:0}" \
+  ROS_MASTER_URI=http://localhost:11311 \
   ./RMUA/Binaries/Linux/RMUA-Linux-Shipping RMUA seed "$SEED"
-  # ↑ 直调 UE 二进制。参数含义:
-  #   第一个 "RMUA"        = UE 项目名(打包二进制需用它定位项目)
-  #   "seed" "$SEED"       = 项目自定义子命令,设随机种子选赛道配置
-  #   (RMUA.sh 只是对这一行的 wrapper:readlink 定位 + chmod + 转发 "$@")
+# ↑ 直调 UE 二进制。参数含义:
+#   第一个 "RMUA"        = UE 项目名(打包二进制需用它定位项目)
+#   "seed" "$SEED"       = 项目自定义子命令,设随机种子选赛道配置
+#   (RMUA.sh 只是对这一行的 wrapper:readlink 定位 + chmod + 转发 "$@")

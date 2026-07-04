@@ -1,0 +1,44 @@
+{
+  "name": "RMUA dev (simulator01)",
+  "image": "simulator01:latest",
+  "runArgs": [
+    "--network=host",
+    "--name=rmua-dev",
+    "--privileged"
+  ],
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "workspaceFolder": "/workspace/IntelligentUAVChampionshipBase/basic_dev",
+  "containerEnv": {
+    "ROS_MASTER_URI": "http://localhost:11311",
+    "ROS_DISTRO": "noetic",
+    "ANTHROPIC_AUTH_TOKEN": "DEEPSEEK_API_KEY_PLACEHOLDER",
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_MODEL": "deepseek-v4-pro",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash"
+  },
+  "remoteUser": "root",
+  "postCreateCommand": "bash /workspace/.devcontainer/postcreate.sh",
+  "postStartCommand": "bash /workspace/.devcontainer/poststart.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-iot.vscode-ros",
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools-extension-pack",
+        "redhat.vscode-yaml",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.eol": "\n"
+      }
+    }
+  }
+}
