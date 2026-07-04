@@ -13,7 +13,7 @@
   "containerEnv": {
     "ROS_MASTER_URI": "http://localhost:11311",
     "ROS_DISTRO": "noetic",
-    "ANTHROPIC_AUTH_TOKEN": "DEEPSEEK_API_KEY_PLACEHOLDER",
+    "ANTHROPIC_AUTH_TOKEN": "${localEnv:DEEPSEEK_API_KEY}",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",

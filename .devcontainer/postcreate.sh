@@ -43,10 +43,10 @@ CLAUDE_SETTINGS="/root/.claude/settings.json"
 
 if [ ! -f "$CLAUDE_SETTINGS" ]; then
   mkdir -p /root/.claude
-  cat > "$CLAUDE_SETTINGS" <<'CLAUDE_EOF'
+  cat > "$CLAUDE_SETTINGS" <<CLAUDE_EOF
 {
   "env": {
-    "ANTHROPIC_AUTH_TOKEN": "DEEPSEEK_API_KEY_PLACEHOLDER",
+    "ANTHROPIC_AUTH_TOKEN": "$ANTHROPIC_AUTH_TOKEN",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
